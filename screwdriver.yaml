@@ -1,0 +1,14 @@
+shared:
+  image: centos:centos7
+
+jobs:
+  main:
+    requires: []
+    steps:
+      - start: echo "pipeline start"
+  
+  performance-test:
+    requires: [ sd@1:acceptance-test, sd@1:acceptance-test ]
+    steps:
+      - init: yum -y install httpd-tools
+      - ls
