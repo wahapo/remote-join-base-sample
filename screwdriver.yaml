@@ -11,7 +11,7 @@ jobs:
     steps:
       - start: ls
   performance-test:
-    requires: [ internal_fork, sd@4880:unit-test, sd@4881:unit-test ]
+    requires: [ internal_fork, sd@4880:deploy, sd@4881:deploy ]
     steps:
       - init: yum -y install httpd-tools
       - ls
