@@ -3,7 +3,7 @@ shared:
 
 jobs:
   main:
-    requires: []
+    requires: [ ~pr, ~commit ]
     steps:
       - start: echo "pipeline start"
   internal_fork:
@@ -11,7 +11,7 @@ jobs:
     steps:
       - start: ls
   performance-test:
-    requires: [ internal_fork, sd@4880:acceptance-test, sd@4881:acceptance-test ]
+    requires: [ internal_fork, sd@4880:unit-test, sd@4881:unit-test ]
     steps:
       - init: yum -y install httpd-tools
       - ls
