@@ -6,9 +6,12 @@ jobs:
     requires: []
     steps:
       - start: echo "pipeline start"
-  
+  internal_fork:
+    requires: [ main ]
+    steps:
+      - start: ls
   performance-test:
-    requires: [ main, sd@4880:acceptance-test, sd@4881:acceptance-test ]
+    requires: [ internal_fork, sd@4880:acceptance-test, sd@4881:acceptance-test ]
     steps:
       - init: yum -y install httpd-tools
       - ls
