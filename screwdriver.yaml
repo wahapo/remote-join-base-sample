@@ -7,8 +7,12 @@ jobs:
     steps:
       - start: echo "pipeline start"
   
-  performance-test:
+  after-unit-test:
+    requires: [ sd@4880:unit-test, sd@4881:unit-test ]
+    steps:
+      - ls
+
+  after-acceptance-test:
     requires: [ sd@4880:acceptance-test, sd@4881:acceptance-test ]
     steps:
-      - init: yum -y install httpd-tools
       - ls
