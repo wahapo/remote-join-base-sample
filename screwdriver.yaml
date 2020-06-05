@@ -2,17 +2,22 @@ shared:
   image: centos:centos7
 
 jobs:
-  main:
+  main-1:
     requires: [ ~commit ]
     steps:
       - start: echo "pipeline start"
   
-  after-unit-test:
-    requires: [ sd@4880:unit-test, sd@4881:unit-test ]
+  main-2:
+    requires: [ ~commit ]
+    steps:
+      - start: echo "pipeline start"
+  
+  join-1:
+    requires: [ sd@4880:test-1, sd@4881:test-1 ]
     steps:
       - ls
 
-  after-acceptance-test:
-    requires: [ sd@4880:acceptance-test, sd@4881:acceptance-test ]
+  join-2:
+    requires: [ sd@4880:test-2, sd@4881:test-2 ]
     steps:
       - ls
