@@ -12,12 +12,22 @@ jobs:
     steps:
       - start: echo "pipeline start"
   
+  internal-fork-1:
+    requires: [ ~main-1 ]
+    steps:
+      - ls
+      
+  internal-fork-2:
+    requires: [ ~main-2 ]
+    steps:
+      - ls
+  
   join-1:
-    requires: [ sd@4880:test-1, sd@4881:test-1 ]
+    requires: [ internal-fork-1, sd@4880:test-1, sd@4881:test-1 ]
     steps:
       - ls
 
   join-2:
-    requires: [ sd@4880:test-2, sd@4881:test-2 ]
+    requires: [ internal-fork-2, sd@4880:test-2, sd@4881:test-2 ]
     steps:
       - ls
